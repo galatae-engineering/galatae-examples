@@ -1,4 +1,7 @@
-from robot_library import Robot
+import sys
+import math
+sys.path.append('../galatae-api/')
+from robot import Robot
 import time
 
 # TARGET CONFIGURATION
@@ -21,7 +24,7 @@ r=Robot('/dev/ttyACM0')
 time.sleep(3)
 r.set_joint_speed(20)
 r.reset_pos()
-
+r.calibrate_gripper()
 
 #point : [x,y,z, ori.pince, vis.pince]
 r.go_to_point([x_pos-bottle_diameter,y_pos-bottle_diameter,z_pos,90,0]) #s'approcher de la bouteille
@@ -47,4 +50,4 @@ r.open_gripper()
 r.set_joint_speed(20)
 time.sleep(1)
 r.go_to_point([x_pos-bottle_diameter,y_pos-bottle_diameter,z_pos,90,0]) #s'éloigner de la bouteille
-r.got_to_foetus_pos()
+r.go_to_foetus_pos()
