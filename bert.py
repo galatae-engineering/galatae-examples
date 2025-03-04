@@ -47,18 +47,20 @@ def reach_point_through_safe_height(p,safe_height,r):
 
 def main():
   r=Robot('/dev/ttyACM0')
-  default_speed=10
+  default_speed=100
   r.set_joint_speed(default_speed)
   r.reset_pos()
 
-  p_clip=[250,0,40,180,0]
+  p_clip=[235,0,30,180,0]
   p_above_clips=increment_one_element_in_list(p_clip,2,30)
   bottles_safe_height=230
-  p_bottles=[400,0,80,180,0]
+  p_bottles=[393,3,80,180,0]
   p_above_bottles=modify_one_element_in_list(p_bottles,2,bottles_safe_height)
 
+  time.sleep(5)
+
   r.go_to_point(p_above_clips)
-  input()
+  #input()
   r.set_joint_speed(10)
   linear_move(p_clip,r)
   time.sleep(3)
@@ -67,7 +69,8 @@ def main():
   r.go_to_point(modify_one_element_in_list(p_clip,2,bottles_safe_height))
   r.go_to_point(p_above_bottles)
   
-  i=input()
+  i=1
+  #i=input()
   if(i!="n"):
     linear_move(p_bottles,r)
     linear_move(p_above_bottles,r)
